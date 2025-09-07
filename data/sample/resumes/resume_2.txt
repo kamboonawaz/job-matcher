@@ -1,0 +1,10 @@
+Jane Smith
+Data Scientist
+
+Summary
+- 5 years in predictive modeling and experimentation
+- Strong SQL, Python (Pandas, scikit-learn), A/B testing, visualization
+- Interested in causal inference and time series
+
+Skills
+Python, SQL, Pandas, scikit-learn, Statsmodels, Experimentation, Visualization

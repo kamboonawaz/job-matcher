@@ -1,0 +1,10 @@
+John Doe
+Machine Learning Engineer
+
+Summary
+- 4+ years building ML models and APIs in Python
+- Experience with scikit-learn, PyTorch, AWS, Docker
+- Interested in MLOps, model serving, RAG systems
+
+Skills
+Python, scikit-learn, PyTorch, FastAPI, AWS, Docker, Kubernetes, SQL, MLflow

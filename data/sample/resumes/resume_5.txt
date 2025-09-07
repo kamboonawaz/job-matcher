@@ -1,0 +1,9 @@
+Priya Nair
+Computer Vision Engineer
+
+Summary
+- 3+ years in detection and segmentation; deployment on edge devices
+- Experience with PyTorch, ONNX/TensorRT, OpenCV, MLOps basics
+
+Skills
+PyTorch, OpenCV, TensorRT, ONNX, CUDA, Python, FastAPI

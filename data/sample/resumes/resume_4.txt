@@ -1,0 +1,9 @@
+Sam Patel
+NLP Engineer
+
+Summary
+- Experience fine-tuning transformer models and building RAG systems
+- Knowledge of vector databases and evaluation of hallucinations
+
+Skills
+Transformers, HuggingFace, RAG, FAISS, LangChain, Python

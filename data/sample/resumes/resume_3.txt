@@ -1,0 +1,9 @@
+Alex Lee
+MLOps / Platform Engineer
+
+Summary
+- Build CI/CD for ML, Kubernetes, Terraform, monitoring, feature stores
+- Experience with AWS, Docker, Kubeflow, MLflow
+
+Skills
+Docker, Kubernetes, Terraform, AWS, MLflow, Airflow, Monitoring

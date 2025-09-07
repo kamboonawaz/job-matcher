@@ -1,0 +1,9 @@
+Diego Alvarez
+Recommender Systems Engineer
+
+Summary
+- Built collaborative filtering and ANN retrieval pipelines
+- Experience with implicit feedback, LightFM, FAISS, feature engineering
+
+Skills
+Matrix Factorization, LightFM, ANN Search, Python, Pandas, Feature Engineering

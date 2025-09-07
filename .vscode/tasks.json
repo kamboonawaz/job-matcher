@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build job index",
+			"type": "shell",
+			"command": "P:/PROJECTS/.venv/Scripts/python.exe",
+			"args": [
+				"-m",
+				"src.pipeline.build_index"
+			],
+			"problemMatcher": [
+				"$python"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build job index",
+			"type": "shell",
+			"command": "P:/PROJECTS/.venv/Scripts/python.exe -m src.pipeline.build_index",
+			"problemMatcher": [
+				"$python"
+			],
+			"group": "build"
+		}
+	]
+}

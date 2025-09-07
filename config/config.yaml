@@ -1,0 +1,14 @@
+# Paths and basic settings
+paths:
+  jobs_csv: data/sample/jobs.csv
+  resumes_dir: data/sample/resumes
+  artifacts_dir: artifacts
+
+vectorizer:
+  max_features: 5000
+  ngram_range: [1, 2]
+  min_df: 2
+  max_df: 0.9
+
+index:
+  top_k_default: 5
