@@ -1,58 +1,73 @@
-# Job Matcher (Private)
+# Job Matcher — DS/AI portfolio project
 
-Lightweight job recommendation service that ranks job postings for a candidate using text relevance (TF‑IDF + cosine). Designed as a foundation to extend with embeddings (sentence-transformers), re-ranking (LightGBM), and a vector DB.
+Production‑ready baseline of a job recommendation service that ranks job postings for a candidate. Starts with TF‑IDF + cosine, designed to evolve into embeddings + re‑ranking. Includes API, tests, and a report generator for recruiter‑friendly results.
+
+## Why it matters
+- DS skills: data ingestion, feature/text processing, evaluation, reporting.
+- AI engineering skills: serving with FastAPI, artifacts, reproducible builds, tests, and room for vector DB + LTR.
 
 ## Features
-- Data ingestion from CSV (jobs) and plain text resumes.
-- TF‑IDF vectorizer + cosine similarity retrieval.
-- FastAPI endpoint to search by free text or stored resume.
-- Reproducible build script and small sample dataset.
+- TF‑IDF retrieval baseline (scikit‑learn) with cosine similarity.
+- FastAPI service: POST /search by free text or stored resume.
+- Pipeline scripts: build index and generate resume→job match reports (CSV/MD).
+- Tests (pytest) for build, query, and reporting.
 
-## Project layout
-- `config/config.yaml` — paths and settings
-- `data/sample/` — example jobs and resumes
-- `src/` — library code and API
-- `artifacts/` — auto-generated model/index files
-- `tests/` — minimal smoke test
+## Architecture
+```
+CSV jobs + text resumes --> Build (TF-IDF) --> artifacts/ {vectorizer, matrix, meta}
+                |
+                v
+              FastAPI /search
+                |
+                v
+          JSON results (top_k)
+```
 
 ## Quickstart
-
-### 1) Setup (Windows bash)
+1) Setup (Windows bash)
 ```bash
 python -m venv .venv
 source .venv/Scripts/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-
-### 2) Build the index
+2) Build the index
 ```bash
 python -m src.pipeline.build_index
 ```
-This will create `artifacts/` with the trained TF‑IDF model, nearest-neighbor index, and metadata.
-
-### 3) Run API
+3) Run API
 ```bash
 uvicorn src.app.main:app --reload --host 127.0.0.1 --port 8000
 ```
-
-### 4) Try it
-- Search with resume on file (created from `data/sample/resumes/resume_1.txt`):
+4) Try it
+- Resume on file:
 ```bash
-curl -s -X POST "http://127.0.0.1:8000/search" \
-  -H "Content-Type: application/json" \
-  -d '{"resume_id":"resume_1", "top_k":3}' | jq
+curl -s -X POST "http://127.0.0.1:8000/search" -H "Content-Type: application/json" -d '{"resume_id":"resume_4","top_k":3}'
 ```
-- Or search with free text:
+- Free text:
 ```bash
-curl -s -X POST "http://127.0.0.1:8000/search" \
-  -H "Content-Type: application/json" \
-  -d '{"text":"machine learning engineer python aws", "top_k":3}' | jq
+curl -s -X POST "http://127.0.0.1:8000/search" -H "Content-Type: application/json" -d '{"text":"machine learning engineer python aws","top_k":3}'
 ```
 
-## Extending to embeddings + re-ranking
-- Swap TF‑IDF for sentence embeddings (e.g., `sentence-transformers`) in `src/index/vectorstore.py`.
-- Add a learning-to-rank model in `src/models/reranker.py` using features like BM25/TF‑IDF score, seniority match, skills overlap; train with XGBoost/LightGBM.
+## Reporting
+Generate top‑k matches for each resume:
+```bash
+python -m src.pipeline.report_matches
+```
+Outputs:
+- artifacts/resume_job_matches.csv
+- artifacts/resume_job_matches.md
 
-## Notes
-- This repo is local/private by default. If you create a Git repo, ensure it’s private and keep sample data non-sensitive.
+## Project layout
+- `config/config.yaml` — paths and settings
+- `data/sample/` — example jobs and resumes
+- `src/` — library code and API
+- `artifacts/` — generated model/index files and reports
+- `tests/` — pytest suite
+
+## Resume‑ready bullets
+- Built a job recommendation system (TF‑IDF baseline) with FastAPI serving; added pipelines for index build and reporting; 3 tests validate end‑to‑end flow.
+- Structured for upgrades: sentence embeddings (vector DB), LTR re‑ranker (LightGBM/XGBoost), and evaluation (NDCG/MRR vs. keyword baseline).
+
+## License
+MIT — see `LICENSE`.
