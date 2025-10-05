@@ -23,7 +23,7 @@ CSV jobs + text resumes --> Build (TF-IDF) --> artifacts/ {vectorizer, matrix, m
 
           # 🧑‍💼 Job Matcher — AI-Powered Resume-to-Job Recommender
 
-          [![CI](https://github.com/kamboonawaz/job-matcher-private/actions/workflows/ci.yml/badge.svg)](https://github.com/kamboonawaz/job-matcher-private/actions)
+          [![CI](https://github.com/kamboonawaz/job-matcher/actions/workflows/ci.yml/badge.svg)](https://github.com/kamboonawaz/job-matcher/actions)
           [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
           > **Showcase your Data Science & AI Engineering skills:**
