@@ -1,6 +1,6 @@
 # Job Matcher — DS/AI portfolio project
 
-Production‑ready baseline of a job recommendation service that ranks job postings for a candidate. Starts with TF‑IDF + cosine, designed to evolve into embeddings + re‑ranking. Includes API, tests, and a report generator for recruiter‑friendly results.
+Production‑ready baseline of a job recommendation service that ranks job postings for a candidate. Starts with TF‑IDF + cosine, designed to evolve into embeddings + re‑ranking. Includes API, tests, and artifact management.
 
 ## Why it matters
 - DS skills: data ingestion, feature/text processing, evaluation, reporting.
@@ -9,7 +9,7 @@ Production‑ready baseline of a job recommendation service that ranks job posti
 ## Features
 - TF‑IDF retrieval baseline (scikit‑learn) with cosine similarity.
 - FastAPI service: POST /search by free text or stored resume.
-- Pipeline scripts: build index and generate resume→job match reports (CSV/MD).
+- Pipeline script: build index (produces vectorizer + matrix + metadata).
 - Tests (pytest) for build, query, and reporting.
 
 ## Architecture
@@ -37,7 +37,7 @@ CSV jobs + text resumes --> Build (TF-IDF) --> artifacts/ {vectorizer, matrix, m
 
           - **AI-powered job recommender:** Ranks job postings for a candidate using TF‑IDF, cosine similarity, and a FastAPI backend.
           - **Production-ready structure:** Modular code, config-driven, with tests, reporting, and Docker support.
-          - **Recruiter-facing:** Clear, reproducible results; easy to extend with embeddings, LTR, or cloud deployment.
+          - Clear, reproducible results; easy to extend with embeddings, LTR, or cloud deployment.
 
           ---
 
@@ -47,7 +47,7 @@ CSV jobs + text resumes --> Build (TF-IDF) --> artifacts/ {vectorizer, matrix, m
           - Feature engineering (TF‑IDF, n-grams)
           - Model serving (FastAPI, Docker)
           - Automated testing (pytest, smoke tests)
-          - Reporting (CSV, Markdown, batch scoring)
+          - Extensible retrieval pipeline
           - CI/CD (GitHub Actions)
           - Clean code, config management, reproducibility
 
@@ -85,12 +85,6 @@ CSV jobs + text resumes --> Build (TF-IDF) --> artifacts/ {vectorizer, matrix, m
           curl -s -X POST "http://127.0.0.1:8000/search" \
             -H "Content-Type: application/json" \
             -d '{"text":"machine learning engineer python aws", "top_k":3}' | jq
-          ```
-
-          ### 5. Batch reporting
-          ```bash
-          python -m src.pipeline.report_matches
-          # See artifacts/resume_job_matches.md for top matches per resume
           ```
 
           ---

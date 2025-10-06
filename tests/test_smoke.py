@@ -4,7 +4,6 @@ import os
 from src.pipeline.build_index import build_and_save
 from src.index.vectorstore import TfidfJobIndex
 from src.utils.config import load_config
-from src.pipeline.report_matches import score_resumes
 
 
 def test_build_and_query():
@@ -33,7 +32,11 @@ def test_various_queries():
         assert len(res) > 0
 
 
-def test_reporting_outputs():
-    rows_csv, rows_md = score_resumes(top_k=3)
-    # Ensure at least one resume x job row generated
-    assert len(rows_csv) > 0 and len(rows_md) > 0
+def test_basic_query_variants():
+    # Additional quick queries to ensure stability
+    cfg = load_config()
+    artifacts_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), cfg.paths.artifacts_dir)
+    idx = TfidfJobIndex.load(artifacts_dir)
+    for q in ["python data", "cloud aws", "frontend react"]:
+        res = idx.query(q, top_k=3)
+        assert len(res) > 0
